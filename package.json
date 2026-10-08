@@ -1,0 +1,52 @@
+{
+  "name": "vscode-copy-class",
+  "displayName": "Copy Java Class",
+  "description": "IntelliJ의 Copy Class처럼 Java 클래스를 다른 패키지(또는 다른 이름)로 복사합니다.",
+  "version": "0.1.1",
+  "publisher": "nomidev",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copyClass.copy",
+        "title": "Copy Class..."
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "copyClass.copy",
+          "when": "resourceExtname == .java && !explorerResourceIsFolder",
+          "group": "5_cutcopypaste@99"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "copyClass.copy",
+          "when": "resourceExtname == .java",
+          "group": "1_modification@99"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "copyClass.copy",
+          "when": "resourceExtname == .java"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "test": "npm run compile && node test/transform.test.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}
